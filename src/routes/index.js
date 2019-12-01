@@ -3,6 +3,9 @@ import user from './user';
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+  res.send('Hello Passport!');
+});
 router.use('/user', user);
 
 export default router;

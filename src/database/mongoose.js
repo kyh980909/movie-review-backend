@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost/test', {
+mongoose.connect('mongodb://localhost/movie_review', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

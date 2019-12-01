@@ -4,15 +4,12 @@ import logger from 'morgan';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import passport from 'passport';
-import './passport';
+const MongoStore = require('connect-mongo')(session);
 
 dotenv.config();
 
 const app = express();
 
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,10 +19,10 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: process.env.COOKIE_SECRET,
-    cookie: {
-      httpOnly: true,
-      secure: false
-    }
+    store: new MongoStore({
+      url: 'mongodb://localhost/movie_review',
+      collection: 'session'
+    })
   })
 );
 app.use('/api', api);
