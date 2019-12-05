@@ -1,6 +1,5 @@
 import User from '../model/user';
 import bcrypt from 'bcrypt';
-import { isError } from 'util';
 
 export const Login = async (req, res) => {
   const { id, pw } = req.body;
