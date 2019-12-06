@@ -12,7 +12,7 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ limit: '50mb', extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   session({

@@ -1,14 +1,14 @@
 import Movie from '../model/movie';
 
 export const WriteReview = async (req, res) => {
-  const { writer, review, image, star } = req.body;
+  const { writer, title, date, ticket, score, review } = req.body;
   let result = {
     success: null,
     error: null
   };
 
   try {
-    await Movie({ writer, review, image, star }).save();
+    await Movie({ writer, title, date, ticket, score, review }).save();
     result = {
       success: true,
       error: null

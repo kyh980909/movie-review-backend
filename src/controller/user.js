@@ -10,11 +10,13 @@ export const Login = async (req, res) => {
   };
 
   try {
-    const checkId = await User.findOne({ id: id }); // select * from user where id = 'id'
+    const checkId = await User.findOne({ id: id });
     // id check
     if (checkId) {
       //pw check
-      if (checkId['pw'] == pw) {
+      if (bcrypt.compareSync(pw, checkId['pw'])) {
+        console.log(req.session.id);
+        console.log(req.session);
         result = {
           success: true,
           error: null
