@@ -1,16 +1,16 @@
 import User from '../model/user';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt-nodejs';
 
 export const Login = async (req, res) => {
   const { id, pw } = req.body;
+
   let result = {
     success: null,
     error: null
   };
 
   try {
-    const checkId = await User.findOne({ id: id });
-
+    const checkId = await User.findOne({ id: id }); // select * from user where id = 'id'
     // id check
     if (checkId) {
       //pw check
@@ -55,12 +55,15 @@ export const Register = async (req, res) => {
     };
   } else {
     try {
-      await User({ id, pw }).save();
+      const salt = bcrypt.genSaltSync(10);
+      const hashPw = bcrypt.hashSync(pw, salt, null); // 해싱 암호화 추가
+      await User({ id, pw: hashPw }).save();
       result = {
         success: true,
         error: null
       };
     } catch (err) {
+      console.log(err);
       result = {
         success: false,
         error: err
