@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost/movie_review', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  'mongodb+srv://kyh:dydgh5260@movie-review-pfuoh.mongodb.net/movie_review?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 const db = mongoose.connection;
 

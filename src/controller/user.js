@@ -30,7 +30,7 @@ export const Login = async (req, res) => {
     } else {
       result = {
         success: false,
-        error: '아이디가 맞지 않습니다.'
+        error: '아이디가 없습니다. 회원가입을 진행해주세요.'
       };
     }
   } catch (err) {
