@@ -43,3 +43,26 @@ export const ReviewList = async (req, res) => {
   }
   res.json(result);
 };
+
+export const MyMovieList = async (req, res) => {
+  const writer = req.params.writer;
+  let result = {
+    success: null,
+    error: null
+  };
+
+  try {
+    const list = await Movie.find({ writer: writer }, { ticket: 1 });
+    result = {
+      success: true,
+      error: null,
+      result: list
+    };
+  } catch (err) {
+    result = {
+      success: false,
+      error: err
+    };
+  }
+  res.json(result);
+};
