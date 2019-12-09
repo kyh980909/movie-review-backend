@@ -15,8 +15,6 @@ export const Login = async (req, res) => {
     if (checkId) {
       //pw check
       if (bcrypt.compareSync(pw, checkId['pw'])) {
-        console.log(req.session.id);
-        console.log(req.session);
         result = {
           success: true,
           error: null

@@ -20,8 +20,7 @@ app.use(
     saveUninitialized: false,
     secret: process.env.COOKIE_SECRET,
     store: new MongoStore({
-      url:
-        'mongodb+srv://kyh:dydgh5260@movie-review-pfuoh.mongodb.net/movie_review?retryWrites=true&w=majority',
+      url: 'mongodb://52.78.154.223:27017/movie_review',
       collection: 'session'
     })
   })
